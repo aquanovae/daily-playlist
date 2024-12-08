@@ -1,11 +1,29 @@
+// =============================================================================
+//
+// Generate a spotify playlist with random tracks from multiple playlists
+//
+// Functions:
+//  main
+//  update_daily_playlist
+//  track_selection
+//  track_source
+//  track_list
+//  playlist_id
+//  spotify_api
+//
+// Enums:
+//  Playlist
+// =============================================================================
+
 use std::collections::HashMap;
 
 use rand::seq::SliceRandom;
 
 use rspotify::{ AuthCodePkceSpotify, Config, Credentials, OAuth, scopes };
 use rspotify::clients::{ BaseClient, OAuthClient };
-use rspotify::model::{ Id, PlayableId, PlaylistId, TrackId };
+use rspotify::model::{ PlayableId, PlaylistId };
 
+// =============================================================================
 
 fn main() {
 
@@ -16,7 +34,9 @@ fn main() {
     update_daily_playlist(&spotify_api, track_selection);
 }
 
-
+// =============================================================================
+// Clear all tracks in output playlist and add newly generated selection
+//
 fn update_daily_playlist(spotify_api: &AuthCodePkceSpotify, tracks: Vec<PlayableId>) {
 
     let playlist_id = playlist_id(Playlist::DailyPlaylist);
@@ -58,7 +78,9 @@ fn update_daily_playlist(spotify_api: &AuthCodePkceSpotify, tracks: Vec<Playable
     println!("Daily playlist updated");
 }
 
-
+// =============================================================================
+// Select random tracks in multiple playlists and shuffle them
+//
 fn track_selection(spotify_api: &AuthCodePkceSpotify) -> Vec<PlayableId> {
 
     let mut rng = rand::thread_rng();
@@ -92,7 +114,9 @@ fn track_selection(spotify_api: &AuthCodePkceSpotify) -> Vec<PlayableId> {
     track_selection
 }
 
-
+// =============================================================================
+// List all possible tracks for selection sorted by playlist
+//
 fn track_source(spotify_api: &AuthCodePkceSpotify) -> HashMap<Playlist, Vec<PlayableId>> {
 
     let sources = vec![
@@ -115,7 +139,9 @@ fn track_source(spotify_api: &AuthCodePkceSpotify) -> HashMap<Playlist, Vec<Play
     track_source
 }
 
-
+// =============================================================================
+// Fetch track list of a given playlist
+//
 fn track_list(spotify_api: &AuthCodePkceSpotify, playlist: Playlist) -> Vec<PlayableId> {
 
     let playlist_id = playlist_id(playlist);
@@ -140,7 +166,9 @@ fn track_list(spotify_api: &AuthCodePkceSpotify, playlist: Playlist) -> Vec<Play
     track_list
 }
 
-
+// =============================================================================
+// Playlists that can be accessed
+//
 #[derive(Copy, Clone, Hash, Eq, PartialEq, Debug)]
 enum Playlist {
     CurrentLoop,
@@ -151,7 +179,9 @@ enum Playlist {
     DailyPlaylist
 }
 
-
+// =============================================================================
+// Return spotify playlist ID for enum variant
+//
 fn playlist_id(playlist: Playlist) -> PlaylistId<'static> {
 
     let playlist_id = match playlist {
@@ -169,7 +199,9 @@ fn playlist_id(playlist: Playlist) -> PlaylistId<'static> {
     playlist_id
 }
 
-
+// =============================================================================
+// Connect to spotify API
+//
 fn spotify_api() -> AuthCodePkceSpotify {
 
     let credentials = Credentials::new_pkce("207ee9e318444985827ba5c3c9cb3d92");
