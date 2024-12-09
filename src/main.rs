@@ -37,16 +37,20 @@ fn main() {
 // =============================================================================
 // Clear all tracks in output playlist and add newly generated selection
 //
-fn update_daily_playlist(spotify_api: &AuthCodePkceSpotify, tracks: Vec<PlayableId>) {
+fn update_daily_playlist(
+    spotify_api: &AuthCodePkceSpotify,
+    tracks: Vec<PlayableId>
+
+) {
 
     let playlist_id = playlist_id(Playlist::DailyPlaylist);
 
-    let track_list = track_list(&spotify_api, Playlist::DailyPlaylist);
+    let tracks_to_clear = track_list(&spotify_api, Playlist::DailyPlaylist);
 
     let chunk_size = 75;
 
 
-    for tracks_chunk in track_list.chunks(chunk_size) {
+    for tracks_chunk in tracks_to_clear.chunks(chunk_size) {
 
         let tracks = tracks_chunk
             .iter()
@@ -55,7 +59,12 @@ fn update_daily_playlist(spotify_api: &AuthCodePkceSpotify, tracks: Vec<Playable
             )
             .collect::<Vec<_>>();
 
-        spotify_api.playlist_remove_all_occurrences_of_items(playlist_id.clone(), tracks, None)
+        spotify_api
+            .playlist_remove_all_occurrences_of_items(
+                playlist_id.clone(),
+                tracks,
+                None
+            )
             .expect("Could not clear playlist");
     }
 
@@ -71,7 +80,12 @@ fn update_daily_playlist(spotify_api: &AuthCodePkceSpotify, tracks: Vec<Playable
 
         let start_index = (i * chunk_size) as u32;
 
-        spotify_api.playlist_add_items(playlist_id.clone(), tracks, Some(start_index))
+        spotify_api
+            .playlist_add_items(
+                playlist_id.clone(),
+                tracks,
+                Some(start_index)
+            )
             .expect("Could not add selection to playlist");
     }
 
@@ -81,7 +95,10 @@ fn update_daily_playlist(spotify_api: &AuthCodePkceSpotify, tracks: Vec<Playable
 // =============================================================================
 // Select random tracks in multiple playlists and shuffle them
 //
-fn track_selection(spotify_api: &AuthCodePkceSpotify) -> Vec<PlayableId> {
+fn track_selection(
+    spotify_api: &AuthCodePkceSpotify
+
+) -> Vec<PlayableId> {
 
     let mut rng = rand::thread_rng();
 
@@ -117,7 +134,10 @@ fn track_selection(spotify_api: &AuthCodePkceSpotify) -> Vec<PlayableId> {
 // =============================================================================
 // List all possible tracks for selection sorted by playlist
 //
-fn track_source(spotify_api: &AuthCodePkceSpotify) -> HashMap<Playlist, Vec<PlayableId>> {
+fn track_source(
+    spotify_api: &AuthCodePkceSpotify
+
+) -> HashMap<Playlist, Vec<PlayableId>> {
 
     let sources = vec![
         Playlist::CurrentLoop,
@@ -142,7 +162,11 @@ fn track_source(spotify_api: &AuthCodePkceSpotify) -> HashMap<Playlist, Vec<Play
 // =============================================================================
 // Fetch track list of a given playlist
 //
-fn track_list(spotify_api: &AuthCodePkceSpotify, playlist: Playlist) -> Vec<PlayableId> {
+fn track_list(
+    spotify_api: &AuthCodePkceSpotify,
+    playlist: Playlist
+
+) -> Vec<PlayableId> {
 
     let playlist_id = playlist_id(playlist);
 
@@ -182,7 +206,10 @@ enum Playlist {
 // =============================================================================
 // Return spotify playlist ID for enum variant
 //
-fn playlist_id(playlist: Playlist) -> PlaylistId<'static> {
+fn playlist_id(
+    playlist: Playlist
+
+) -> PlaylistId<'static> {
 
     let playlist_id = match playlist {
         Playlist::CurrentLoop       => "77JTZoDLsmXm1ODTdVc1oz",
@@ -202,7 +229,9 @@ fn playlist_id(playlist: Playlist) -> PlaylistId<'static> {
 // =============================================================================
 // Connect to spotify API
 //
-fn spotify_api() -> AuthCodePkceSpotify {
+fn spotify_api()
+
+-> AuthCodePkceSpotify {
 
     let credentials = Credentials::new_pkce("207ee9e318444985827ba5c3c9cb3d92");
 
