@@ -107,11 +107,11 @@ fn track_selection(
     for (playlist, track_list) in track_source(&spotify_api) {
 
         let track_count = match playlist {
-            Playlist::CurrentLoop       => 70,
-            Playlist::FreshVibrations   => 20,
-            Playlist::IntoTheAbyss      => 20,
-            Playlist::FlowingAtmosphere => 20,
-            Playlist::NerveRacking      => 20,
+            Playlist::CurrentLoop       => 75,
+            Playlist::FreshVibrations   => 30,
+            Playlist::IntoTheAbyss      => 15,
+            Playlist::FlowingAtmosphere => 15,
+            Playlist::NerveRacking      => 15,
             _ => 0
         };
 
