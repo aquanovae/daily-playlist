@@ -18,7 +18,21 @@
     },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "src": "src"
+      }
+    },
+    "src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 0,
+        "narHash": "sha256-ZW3IlnduYFFRiyOXqDEqEXsPnEglwPj3Qm3KgHMFbSM=",
+        "path": "./",
+        "type": "path"
+      },
+      "original": {
+        "path": "./",
+        "type": "path"
       }
     }
   },

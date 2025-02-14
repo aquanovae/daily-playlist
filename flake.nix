@@ -4,10 +4,18 @@
   '';
 
 
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  inputs = {
+
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    src = {
+      url = "path:./";
+      flake = false;
+    };
+  };
 
 
-  outputs = { nixpkgs, ... }: let
+  outputs = { nixpkgs, ... }@inputs: let
 
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
@@ -19,10 +27,10 @@
       pname = "daily-playlist";
       version = "1.0.0";
 
-      src = "./";
+      src = inputs.src;
 
       useFetchCargoVendor = true;
-      cargoHash = "";
+      cargoHash = "sha256-3eGj2YedGeYFdN7X6RoSrQj0oh7siFTc6+w7fzENVyM=";
     };
 
 
