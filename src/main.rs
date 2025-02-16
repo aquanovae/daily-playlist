@@ -236,7 +236,7 @@ fn spotify_api()
     let credentials = Credentials::new_pkce("207ee9e318444985827ba5c3c9cb3d92");
 
     let oauth = OAuth {
-        redirect_uri: String::from("https://localhost/callback"),
+        redirect_uri: String::from("http://127.0.0.1:8080"),
         scopes: scopes!(
             "playlist-read-private",
             "playlist-modify-private"
