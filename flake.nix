@@ -9,7 +9,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     src = {
-      url = "path:./";
+      url = "github:aquanovae/daily-playlist";
       flake = false;
     };
   };

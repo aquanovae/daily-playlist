@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1739446958,
-        "narHash": "sha256-+/bYK3DbPxMIvSL4zArkMX0LQvS7rzBKXnDXLfKyRVc=",
+        "lastModified": 1739580444,
+        "narHash": "sha256-+/bSz4EAVbqz8/HsIGLroF8aNaO8bLRL7WfACN+24g4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2ff53fe64443980e139eaa286017f53f88336dd0",
+        "rev": "8bb37161a0488b89830168b81c48aed11569cb93",
         "type": "github"
       },
       "original": {
@@ -25,14 +25,17 @@
     "src": {
       "flake": false,
       "locked": {
-        "lastModified": 0,
-        "narHash": "sha256-ZW3IlnduYFFRiyOXqDEqEXsPnEglwPj3Qm3KgHMFbSM=",
-        "path": "./",
-        "type": "path"
+        "lastModified": 1739739049,
+        "narHash": "sha256-/rt0K+6tlRvwxwuXPIhYJHp8s6YJ7GjFrNoE+2evfRI=",
+        "owner": "aquanovae",
+        "repo": "daily-playlist",
+        "rev": "1b9b31f1e793dad73b8a279a6c3e825a9e85e792",
+        "type": "github"
       },
       "original": {
-        "path": "./",
-        "type": "path"
+        "owner": "aquanovae",
+        "repo": "daily-playlist",
+        "type": "github"
       }
     }
   },
