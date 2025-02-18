@@ -25,7 +25,7 @@
     packages.${system}.default = pkgs.rustPlatform.buildRustPackage {
 
       pname = "daily-playlist";
-      version = "1.0.0";
+      version = "1.1.0";
 
       src = inputs.src;
 
