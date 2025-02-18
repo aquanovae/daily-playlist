@@ -41,7 +41,7 @@
       inherit buildInputs nativeBuildInputs;
 
       useFetchCargoVendor = true;
-      cargoHash = "sha256-NZvFrV+szd+sFElbOZ6vdLCR1hug3WQtX+kjZKli48U=";
+      cargoHash = "sha256-xDHTatjqOoESnYg/1hGzGZKnU2ZFkbElILzlTPEHt5s=";
     };
 
 
