@@ -25,11 +25,11 @@
     "src": {
       "flake": false,
       "locked": {
-        "lastModified": 1739872643,
-        "narHash": "sha256-eSILD7fpMpKN1Zd2+MdvJGGV0cKfNRWMJQFyOOtN3iQ=",
+        "lastModified": 1739875898,
+        "narHash": "sha256-S3D15fnmqsm1V5/rsoYM0Z5motjzoDHoX21xI7sOKgU=",
         "owner": "aquanovae",
         "repo": "daily-playlist",
-        "rev": "4cb84bd7648eea2c363706e18a4288ae4836ed65",
+        "rev": "ca91ddf6cdbcf7e6caca40a1be50c27c17d5e3aa",
         "type": "github"
       },
       "original": {
