@@ -20,7 +20,16 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
 
-  in with pkgs; {
+    buildInputs = with pkgs; [
+        openssl
+    ];
+    nativeBuildInputs = with pkgs; [
+        cargo
+        rustc
+        pkg-config
+    ];
+
+  in {
 
     packages.${system}.default = pkgs.rustPlatform.buildRustPackage {
 
@@ -29,8 +38,10 @@
 
       src = inputs.src;
 
+      inherit buildInputs nativeBuildInputs;
+
       useFetchCargoVendor = true;
-      cargoHash = "sha256-3eGj2YedGeYFdN7X6RoSrQj0oh7siFTc6+w7fzENVyM=";
+      cargoHash = "sha256-NZvFrV+szd+sFElbOZ6vdLCR1hug3WQtX+kjZKli48U=";
     };
 
 
@@ -38,16 +49,7 @@
 
       name = "rust";
 
-      nativeBuildInputs = [
-        pkg-config
-      ];
-
-      buildInputs = [ 
-        cargo
-        rustc
-
-        openssl
-      ];
+      inherit buildInputs nativeBuildInputs;
     };
   };
 }
