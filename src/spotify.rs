@@ -12,7 +12,7 @@ pub type Spotify = AuthCodePkceSpotify;
 
 
 const CLIENT_ID: &str = "207ee9e318444985827ba5c3c9cb3d92";
-const CALLBACK_ADDRESS: &str = "http://127.0.0.1:8080";
+const CALLBACK_ADDRESS: &str = "http://dummy.dummy";
 
 
 
