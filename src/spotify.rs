@@ -1,9 +1,11 @@
 use crate::AppResult;
 
 use rspotify::{
-    AuthCodePkceSpotify, Config, Credentials, OAuth, Token,
+    AuthCodePkceSpotify, Config, Credentials, OAuth,
     clients::OAuthClient,
 };
+
+use std::path::PathBuf;
 
 
 
@@ -16,18 +18,14 @@ const CALLBACK_ADDRESS: &str = "http://dummy.dummy";
 
 
 
-pub async fn authenticate_user(config: Config) -> AppResult {
+pub async fn connect_to_api() -> AppResult<Spotify> {
 
-    let mut spotify = connect_to_api(None, config);
-    let authorize_url = spotify.get_authorize_url(None)?;
-    let code = spotify.get_code_from_user(&authorize_url)?;
-    spotify.request_token(&code).await?;
-    Ok(())
-}
-
-
-pub fn connect_to_api(token: Option<Token>, config: Config) -> AuthCodePkceSpotify {
-
+    let mut cache_path = PathBuf::from("/var/cache/daily-playlist");
+    match std::fs::exists(&cache_path) {
+        Err(_) | Ok(false) => std::fs::create_dir_all(&cache_path)?,
+        _ => ()
+    };
+    cache_path.push("token.json");
     let credentials = Credentials::new_pkce(CLIENT_ID);
     let oauth = OAuth {
         redirect_uri: CALLBACK_ADDRESS.to_owned(),
@@ -37,9 +35,15 @@ pub fn connect_to_api(token: Option<Token>, config: Config) -> AuthCodePkceSpoti
         ),
         ..Default::default()
     };
+    let config = Config {
+        cache_path,
+        token_cached: true,
+        token_refreshing: true,
+        ..Default::default()
+    };
+    let mut spotify = Spotify::with_config(credentials, oauth, config);
+    let authorize_url = spotify.get_authorize_url(None)?;
+    spotify.prompt_for_token(&authorize_url).await?;
 
-    match token {
-        Some(token) => AuthCodePkceSpotify::from_token_with_config(token, credentials, oauth, config),
-        None => AuthCodePkceSpotify::with_config(credentials, oauth, config),
-    }
+    Ok(spotify)
 }
