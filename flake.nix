@@ -9,7 +9,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     src = {
-      url = "github:aquanovae/daily-playlist";
+      url = "path:./";
+      #url = "github:aquanovae/daily-playlist";
       flake = false;
     };
   };
@@ -34,14 +35,14 @@
     packages.${system}.default = pkgs.rustPlatform.buildRustPackage {
 
       pname = "daily-playlist";
-      version = "1.1.1";
+      version = "1.1.2";
 
       src = inputs.src;
 
       inherit buildInputs nativeBuildInputs;
 
       useFetchCargoVendor = true;
-      cargoHash = "sha256-xDHTatjqOoESnYg/1hGzGZKnU2ZFkbElILzlTPEHt5s=";
+      cargoHash = "sha256-LHlxWEjkciedpTa2fSYwR5Z6DSfu/fSUFUov2h4QH2c=";
     };
 
 

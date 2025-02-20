@@ -8,9 +8,6 @@ pub type AppResult<T = ()> = Result<T, AppError>;
 #[derive(Debug, Error)]
 pub enum AppError {
 
-    #[error("{0}")]
-    BaseDirectoriesError(#[from] xdg::BaseDirectoriesError),
-
     #[error("")]
     CouldNotGetPlaylist,
 
