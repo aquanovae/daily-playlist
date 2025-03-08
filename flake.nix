@@ -1,52 +1,39 @@
 {
-  description = ''
-    Generate daily spotify playlist
-  '';
+  description = "Generate daily spotify playlist";
 
 
-  inputs = {
-
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    src = {
-      url = "github:aquanovae/daily-playlist";
-      flake = false;
-    };
-  };
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
 
-  outputs = { nixpkgs, ... }@inputs: let
+  outputs = { nixpkgs, ... }: let
 
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
 
     buildInputs = with pkgs; [
-        openssl
+      openssl
     ];
     nativeBuildInputs = with pkgs; [
-        cargo
-        rustc
-        pkg-config
+      cargo
+      rustc
+      pkg-config
     ];
 
   in {
 
     packages.${system}.default = pkgs.rustPlatform.buildRustPackage {
-
       pname = "daily-playlist";
-      version = "1.1.2";
-
-      src = inputs.src;
+      version = "1.1.3";
+      src = ./.;
 
       inherit buildInputs nativeBuildInputs;
 
       useFetchCargoVendor = true;
-      cargoHash = "sha256-LHlxWEjkciedpTa2fSYwR5Z6DSfu/fSUFUov2h4QH2c=";
+      cargoHash = "sha256-peMtNyAlVpXnh6so7aHHshSJb92hoEb4gGHNFHNSyBU=";
     };
 
 
     devShells.${system}.default = pkgs.stdenv.mkDerivation {
-
       name = "rust";
 
       inherit buildInputs nativeBuildInputs;

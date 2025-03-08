@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1739866667,
-        "narHash": "sha256-EO1ygNKZlsAC9avfcwHkKGMsmipUk1Uc0TbrEZpkn64=",
+        "lastModified": 1741246872,
+        "narHash": "sha256-Q6pMP4a9ed636qilcYX8XUguvKl/0/LGXhHcRI91p0U=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "73cf49b8ad837ade2de76f87eb53fc85ed5d4680",
+        "rev": "10069ef4cf863633f57238f179a0297de84bd8d3",
         "type": "github"
       },
       "original": {
@@ -18,24 +18,7 @@
     },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs",
-        "src": "src"
-      }
-    },
-    "src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1740054408,
-        "narHash": "sha256-tBJieuw9xOHQgBaxoVgxpV968pfkQT3dppUj0jWWKwI=",
-        "owner": "aquanovae",
-        "repo": "daily-playlist",
-        "rev": "6ed8aba07033399eb54c7eb4244f54245dd72ef8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aquanovae",
-        "repo": "daily-playlist",
-        "type": "github"
+        "nixpkgs": "nixpkgs"
       }
     }
   },
