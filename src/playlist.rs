@@ -25,11 +25,11 @@ type TrackSource = HashMap<String, TrackList>;
 const CHUNK_SIZE: usize = 100;
 const DESTINATION_PLAYLIST_ID: &str = "42O1aSlfF0vlmLuBkPlcDO";
 const PLAYLISTS: [PlaylistData; 6] = [
-    PlaylistData{ id: "77JTZoDLsmXm1ODTdVc1oz", choose_tracks: 75 }, // Current Loop
-    PlaylistData{ id: "7tmG3W0fLJw9eDEaRCG8VY", choose_tracks: 30 }, // Fresh Vibrations
-    PlaylistData{ id: "0oc9wsvrxgwI17PCfbEo1l", choose_tracks: 15 }, // Into The Abyss
-    PlaylistData{ id: "4Ty1f3XV2rOPrNOOBMPldQ", choose_tracks: 15 }, // Flowing Atmosphere
-    PlaylistData{ id: "1THuBLaWoC0E8PNo2MsFka", choose_tracks: 15 }, // Nerve Racking
+    PlaylistData{ id: "77JTZoDLsmXm1ODTdVc1oz", choose_tracks: 80 }, // Current Loop
+    PlaylistData{ id: "7tmG3W0fLJw9eDEaRCG8VY", choose_tracks: 35 }, // Fresh Vibrations
+    PlaylistData{ id: "0oc9wsvrxgwI17PCfbEo1l", choose_tracks: 20 }, // Into The Abyss
+    PlaylistData{ id: "4Ty1f3XV2rOPrNOOBMPldQ", choose_tracks: 20 }, // Flowing Atmosphere
+    PlaylistData{ id: "1THuBLaWoC0E8PNo2MsFka", choose_tracks: 20 }, // Nerve Racking
     PlaylistData{ id: "42O1aSlfF0vlmLuBkPlcDO", choose_tracks: 0  }, // Daily Playlist
 ];
 
