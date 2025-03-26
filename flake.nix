@@ -15,6 +15,7 @@
     ];
     nativeBuildInputs = with pkgs; [
       cargo
+      cargo-edit
       rustc
       pkg-config
     ];
@@ -23,13 +24,13 @@
 
     packages.${system}.default = pkgs.rustPlatform.buildRustPackage {
       pname = "daily-playlist";
-      version = "1.1.3";
+      version = "1.1.4";
       src = ./.;
 
       inherit buildInputs nativeBuildInputs;
 
       useFetchCargoVendor = true;
-      cargoHash = "sha256-peMtNyAlVpXnh6so7aHHshSJb92hoEb4gGHNFHNSyBU=";
+      cargoHash = "sha256-GlQm6c1cpL3BEVONOYOkL80KfaXVJe3dZRYjyNVrEdI=";
     };
 
 

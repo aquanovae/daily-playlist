@@ -7,19 +7,14 @@ pub use spotify::Spotify;
 
 use clap::{ Parser, Subcommand };
 
-
-
 #[derive(Parser)]
 struct Cli {
-
     #[command(subcommand)]
     command: Commands,
 }
 
-
 #[derive(Subcommand)]
 enum Commands {
-
     /// Login spotify account
     Login,
 
@@ -27,11 +22,8 @@ enum Commands {
     Generate,
 }
 
-
-
 #[tokio::main]
 async fn main() -> AppResult {
-
     match Cli::parse().command {
         Commands::Login => {
             let _ = spotify::connect_to_api().await?;
@@ -41,6 +33,5 @@ async fn main() -> AppResult {
             playlist::generate(spotify).await?;
         },
     };
-
     Ok(())
 }

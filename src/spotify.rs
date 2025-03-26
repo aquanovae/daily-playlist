@@ -7,22 +7,16 @@ use rspotify::{
 
 use std::path::PathBuf;
 
-
+const CLIENT_ID: &str = "207ee9e318444985827ba5c3c9cb3d92";
+const CALLBACK_ADDRESS: &str = "http://dummy.dummy";
+//const CALLBACK_ADDRESS: &str = "http://127.0.0.1:8080";
 
 pub type Spotify = AuthCodePkceSpotify;
 
-
-
-const CLIENT_ID: &str = "207ee9e318444985827ba5c3c9cb3d92";
-const CALLBACK_ADDRESS: &str = "http://dummy.dummy";
-
-
-
 pub async fn connect_to_api() -> AppResult<Spotify> {
-
     let mut cache_path = PathBuf::from("/var/cache/daily-playlist");
     match std::fs::exists(&cache_path) {
-        Err(_) | Ok(false) => std::fs::create_dir_all(&cache_path)?,
+        Ok(false) => std::fs::create_dir_all(&cache_path)?,
         _ => ()
     };
     cache_path.push("token.json");
@@ -44,6 +38,5 @@ pub async fn connect_to_api() -> AppResult<Spotify> {
     let mut spotify = Spotify::with_config(credentials, oauth, config);
     let authorize_url = spotify.get_authorize_url(None)?;
     spotify.prompt_for_token(&authorize_url).await?;
-
     Ok(spotify)
 }
